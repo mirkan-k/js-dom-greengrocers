@@ -82,7 +82,6 @@ function createItemButton(item) {
   button.addEventListener('click', () => {
     addItemToCart(item)
   })
-
   return button
 }
 
@@ -101,10 +100,7 @@ function createStoreItem(item) {
 function renderStoreItems() {
   state.items.forEach(item => {
     const storeItemList = document.querySelector('.store--item-list')
-
     const storeItemLI = createStoreItem(item)
-    // console.log(storeItemLI)
-
     storeItemList.append(storeItemLI)
   })
 }
@@ -115,15 +111,12 @@ function createCartIcon(item) {
   img.classList.add('cart--item-icon')
   img.setAttribute('src', `./assets/icons/${item.id}.svg`)
   img.setAttribute('alt', item.name)
-
   return img
 }
 
 function createCartText(item) {
   const p = document.createElement('p')
   p.textContent = item.name
-  // console.log(item)
-
   return p
 }
 
@@ -134,7 +127,6 @@ function createCartDecrement(item) {
   decrement.addEventListener('click', () => {
     removeItemFromCart(item)
   })
-
   return decrement
 }
 
@@ -146,7 +138,6 @@ function removeItemFromCart(item) {
   } else {
     item.quantity--
   }
-
   renderCartItem()
   updateTotalPrice()
 }
@@ -158,7 +149,6 @@ function createCartIncrement(item) {
   increment.addEventListener('click', () => {
     addItemToCart(item)
   })
-
   return increment
 }
 
@@ -166,7 +156,6 @@ function createCartQuantity(item) {
   const quantity = document.createElement('span')
   quantity.classList.add('quantity-text', 'center')
   quantity.textContent = item.quantity
-
   return quantity
 }
 
@@ -199,18 +188,15 @@ function clearCartList() {
 
 function renderCartItem() {
   clearCartList()
-  
   state.cart.forEach(item => {
     const cart = document.querySelector('.cart--item-list')
     const cartItemLI = createCartItem(item)
-  
     cart.appendChild(cartItemLI)
   })
 }
 
 function getCartItemIndex(item) {
   const itemIndex = state.cart.findIndex((cartItem => cartItem.id === item.id))
-
   return itemIndex
 }
 
@@ -228,15 +214,12 @@ function addItemToCart(item) {
       }
     )
   }
-  
-  console.log('cart', state.cart)
   renderCartItem()
   updateTotalPrice()
 }
 
 function updateTotalPrice() {
   const totalNumber = document.querySelector('.total-number')
-
   let totalPrice = 0
 
   for (let i = 0; i < state.cart.length; i++) {
@@ -244,9 +227,7 @@ function updateTotalPrice() {
 
     totalPrice += (item.quantity * item.price)
   }
-
   totalNumber.textContent = `£${totalPrice.toFixed(2)}`
-  // console.log(totalPrice)
 }
 
 // INITIALIZE & RUN
@@ -260,4 +241,3 @@ function run() {
 }
 
 run()
-// console.log(state.cart)
